@@ -16,7 +16,7 @@ def find_files(link: str) -> Tuple[str, List[Tuple[str, str]]]:
     content = requests.get("https://" + link).text
     file_name_pattern = re.compile(r'(?<=</span>\s).+(?=</div><div\sclass=)')
     file_size_pattern = re.compile(r'(?<=text-right\ssize\">)[\d.MKGB]+(?=</div>)')
-    magnet_pattern = re.compile(r'magnet:\?xt[\w:=&-_]+(?=</textarea>)')
+    magnet_pattern = re.compile(r'magnet:\?xt.+(?=</textarea>)')
     file_names = re.findall(file_name_pattern, content)
     file_sizes = re.findall(file_size_pattern, content)
     magnet = re.findall(magnet_pattern, content)[0]
